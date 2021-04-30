@@ -1,15 +1,22 @@
 package controllers
 
-import "net/http"
+import (
+	"api/src/structs"
+	"encoding/json"
+	"net/http"
+)
 
 func CriarUsuario(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Criando usuário"))
+	usuario := structs.Usuario{"Jairo", 21, structs.Endereco{"rua 15", 1, "B", "Sao leo"}}
+
+	w.WriteHeader(200)
+	json.NewEncoder(w).Encode(usuario)
+
 }
 
 func BuscarUsuario(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Buscando usuário"))
-}
+	usuario := structs.Usuario{"Silas", 21, structs.Endereco{"rua 16", 111, "Bdd", "Sao leo dd"}}
 
-func BuscarUsuarioPorId(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Buscando usuário"))
+	w.WriteHeader(200)
+	json.NewEncoder(w).Encode(usuario)
 }
